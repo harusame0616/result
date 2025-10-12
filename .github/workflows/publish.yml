@@ -33,8 +33,8 @@ jobs:
       - name: テストを実行
         run: pnpm test
 
-      - name: lint を実行
-        run: pnpm lint
+      - name: 検証を実行
+        run: pnpm run validate:check
 
       - name: ビルドを実行
         run: pnpm build

@@ -19,9 +19,13 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:ui": "vitest --ui",
-		"lint": "biome check .",
-		"format": "biome format --write .",
-		"check": "biome check --write .",
+		"lint:check": "biome lint .",
+		"lint:fix": "biome lint --write .",
+		"format:check": "biome format .",
+		"format:fix": "biome format --write .",
+		"type:check": "tsc --noEmit",
+		"validate:check": "pnpm run lint:check && pnpm run format:check && pnpm run type:check",
+		"validate:fix": "pnpm run lint:fix && pnpm run format:fix",
 		"prepublishOnly": "pnpm run build"
 	},
 	"keywords": [

@@ -1,13 +1,53 @@
 {
-  "name": "result",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.12.4"
+	"name": "@harusame0616/result",
+	"version": "1.0.0",
+	"description": "Type-safe Result type for TypeScript",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:ui": "vitest --ui",
+		"lint": "biome check .",
+		"format": "biome format --write .",
+		"check": "biome check --write .",
+		"prepublishOnly": "pnpm run build"
+	},
+	"keywords": [
+		"result",
+		"either",
+		"error-handling",
+		"typescript",
+		"functional"
+	],
+	"author": "",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/harusame0616/result.git"
+	},
+	"bugs": {
+		"url": "https://github.com/harusame0616/result/issues"
+	},
+	"homepage": "https://github.com/harusame0616/result#readme",
+	"packageManager": "pnpm@10.12.4",
+	"devDependencies": {
+		"@biomejs/biome": "2.2.5",
+		"@tsconfig/strictest": "2.0.6",
+		"@types/node": "24.7.2",
+		"@vitest/ui": "3.2.4",
+		"typescript": "5.9.3",
+		"vitest": "3.2.4"
+	}
 }

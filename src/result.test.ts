@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { fail, type Result, succeed, tryCatch, tryCatchAsync } from "./result";
+import { fail, succeed, tryCatch, tryCatchAsync } from "./result";
 
 it("succeed: データを渡すと success: true とデータを持つオブジェクトを返す", () => {
 	const result = succeed(42);

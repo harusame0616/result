@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
     devDependencies:
       '@biomejs/biome':
         specifier: 2.2.5
@@ -24,6 +20,9 @@ importers:
       '@vitest/ui':
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
       vitest:
         specifier: 3.2.4
         version: 3.2.4(@types/node@24.7.2)(@vitest/ui@3.2.4)

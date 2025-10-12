@@ -16,12 +16,12 @@ TypeScript向けの型安全なResult型ライブラリ
 ## インストール
 
 ```bash
-# GitHub経由でインストール
-pnpm add github:harusame0616/result
+# npm経由でインストール
+npm install @harusame0616/result
 # または
-npm install github:harusame0616/result
+pnpm add @harusame0616/result
 # または
-yarn add github:harusame0616/result
+yarn add @harusame0616/result
 ```
 
 ## 使い方

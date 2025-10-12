@@ -31,8 +31,11 @@
 		"typescript",
 		"functional"
 	],
-	"author": "",
+	"author": "harusame0616",
 	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/harusame0616/result.git"

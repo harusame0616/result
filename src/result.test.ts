@@ -74,3 +74,41 @@ it("tryCatchAsync: onError でエラーを変換できる", async () => {
 		expect(result.error).toBe("Caught: test error");
 	}
 });
+
+// tryCatch で Result 型を返す場合のテスト
+it("tryCatch: succeed を返すと Result の Success 側に展開される", () => {
+	const result = tryCatch(() => succeed("成功"));
+
+	expect(result.success).toBe(true);
+	if (result.success) {
+		expect(result.data).toBe("成功");
+	}
+});
+
+it("tryCatch: fail を返すと Result の Failure 側に展開される", () => {
+	const result = tryCatch(() => fail("失敗"));
+
+	expect(result.success).toBe(false);
+	if (!result.success) {
+		expect(result.error).toBe("失敗");
+	}
+});
+
+// tryCatchAsync で Result 型を返す場合のテスト
+it("tryCatchAsync: succeed を返すと Result の Success 側に展開される", async () => {
+	const result = await tryCatchAsync(async () => succeed("成功"));
+
+	expect(result.success).toBe(true);
+	if (result.success) {
+		expect(result.data).toBe("成功");
+	}
+});
+
+it("tryCatchAsync: fail を返すと Result の Failure 側に展開される", async () => {
+	const result = await tryCatchAsync(async () => fail("失敗"));
+
+	expect(result.success).toBe(false);
+	if (!result.success) {
+		expect(result.error).toBe("失敗");
+	}
+});

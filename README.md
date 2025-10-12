@@ -87,6 +87,38 @@ if (asyncResult.success) {
 }
 ```
 
+### Result 型の展開
+
+`tryCatch` / `tryCatchAsync` の中で `succeed` や `fail` を返すと、型が自動的に展開されます。
+
+```typescript
+import { tryCatch, succeed, fail } from '@harusame0616/result';
+
+// succeed を返すと Success 側に展開される
+const result1 = tryCatch(() => succeed("成功"));
+// result1: Result<string, Error>
+
+// fail を返すと Failure 側に展開される
+const result2 = tryCatch(() => fail("失敗"));
+// result2: Result<never, string | Error>
+
+// 条件によって succeed/fail を返す
+const result3 = tryCatch(() => {
+  const value = getValue();
+  if (value > 0) {
+    return succeed(value);
+  }
+  return fail("値が不正です");
+});
+// result3: Result<number, string | Error>
+
+if (result3.success) {
+  console.log(result3.data); // number型
+} else {
+  console.log(result3.error); // string | Error型
+}
+```
+
 ## API
 
 ### 型定義
@@ -172,6 +204,43 @@ const result = await tryCatchAsync(
   async () => await fetchData(),
   (e) => `Fetch failed: ${e}`
 );
+```
+
+### 型ヘルパー
+
+Result 型を操作するためのユーティリティ型を提供しています。
+
+#### ExcludeFailure<T>
+
+任意の型から `Failure` 型を除外します。
+
+```typescript
+import type { ExcludeFailure, Failure } from '@harusame0616/result';
+
+type A = string | number | Failure<Error>;
+type B = ExcludeFailure<A>; // string | number
+```
+
+#### ExtractSuccessType<T>
+
+任意の型から `Success` 型のみを抽出します。
+
+```typescript
+import type { ExtractSuccessType, Success, Failure } from '@harusame0616/result';
+
+type A = string | number | Success<string> | Failure<Error>;
+type B = ExtractSuccessType<A>; // Success<string>
+```
+
+#### ExtractFailure<T>
+
+任意の型から `Failure` 型のみを抽出します。
+
+```typescript
+import type { ExtractFailure, Success, Failure } from '@harusame0616/result';
+
+type A = string | number | Success<string> | Failure<Error>;
+type B = ExtractFailure<A>; // Failure<Error>
 ```
 
 ## 型ガード

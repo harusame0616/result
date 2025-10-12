@@ -1,0 +1,45 @@
+name: npm に公開
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: pnpm をセットアップ
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Node.js をセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+
+      - name: 依存関係をインストール
+        run: pnpm install --frozen-lockfile
+
+      - name: テストを実行
+        run: pnpm test
+
+      - name: lint を実行
+        run: pnpm lint
+
+      - name: ビルドを実行
+        run: pnpm build
+
+      - name: npm に公開
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

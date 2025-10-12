@@ -190,6 +190,32 @@ if (result.success) {
 }
 ```
 
+## 開発
+
+### リリース方法
+
+GitHub Actions で自動的に npm に公開されます。
+
+1. `package.json` の `version` を更新
+2. 変更をコミット
+3. Git タグを作成してプッシュ
+
+```bash
+# バージョンを更新（例: 1.0.0 → 1.0.1）
+npm version patch  # または minor, major
+
+# タグをプッシュ
+git push --follow-tags
+```
+
+GitHub Actions が自動的にテスト・ビルド・npm への公開を実行します。
+
+### 初回セットアップ
+
+GitHub リポジトリの Settings > Secrets and variables > Actions から、以下のシークレットを設定してください：
+
+- `NPM_TOKEN`: npm のアクセストークン（https://www.npmjs.com/settings/[username]/tokens から取得）
+
 ## ライセンス
 
 MIT

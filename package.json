@@ -1,6 +1,6 @@
 {
 	"name": "@harusame0616/result",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Type-safe Result type for TypeScript",
 	"type": "module",
 	"main": "./dist/index.js",

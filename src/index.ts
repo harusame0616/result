@@ -5,5 +5,5 @@ export type {
 	Failure,
 	Result,
 	Success,
-} from "./result";
-export { fail, succeed, tryCatch, tryCatchAsync } from "./result";
+} from "./result.js";
+export { fail, succeed, tryCatch, tryCatchAsync } from "./result.js";
